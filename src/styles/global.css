@@ -1,0 +1,104 @@
+:root {
+  --fg: #1a1a1a;
+  --bg: #fafafa;
+  --muted: #666;
+  --accent: #b4365a;
+  --rule: #e5e5e5;
+  --max-w: 42rem;
+  font-family: ui-serif, Georgia, 'Times New Roman', serif;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  line-height: 1.6;
+}
+
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+.container {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 2rem 1.25rem;
+}
+
+.site-header {
+  border-bottom: 1px solid var(--rule);
+  background: #fff;
+}
+.site-header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 1rem 1.25rem;
+}
+.site-header h1 {
+  font-size: 1.25rem;
+  margin: 0;
+  letter-spacing: 0.02em;
+}
+.site-nav a {
+  margin-left: 1rem;
+  color: var(--muted);
+  font-family: ui-sans-serif, system-ui, sans-serif;
+  font-size: 0.9rem;
+}
+
+.article-list { list-style: none; padding: 0; margin: 0; }
+.article-list li {
+  padding: 1.5rem 0;
+  border-bottom: 1px solid var(--rule);
+}
+.article-list .meta {
+  font-family: ui-sans-serif, system-ui, sans-serif;
+  font-size: 0.8rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.article-list h2 {
+  margin: 0.25rem 0 0.5rem;
+  font-size: 1.5rem;
+}
+
+article.prose h1 {
+  font-size: 2.25rem;
+  line-height: 1.2;
+  margin-bottom: 0.5rem;
+}
+article.prose .dateline {
+  font-family: ui-sans-serif, system-ui, sans-serif;
+  font-size: 0.85rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 2rem;
+}
+article.prose img { max-width: 100%; height: auto; }
+article.prose figure { margin: 1.5rem 0; }
+article.prose figcaption {
+  font-size: 0.85rem;
+  color: var(--muted);
+  text-align: center;
+  margin-top: 0.5rem;
+}
+article.prose blockquote {
+  border-left: 3px solid var(--accent);
+  margin: 1.5rem 0;
+  padding-left: 1rem;
+  color: var(--muted);
+  font-style: italic;
+}
+
+.review-banner {
+  background: #fff3cd;
+  border: 1px solid #ffe69c;
+  padding: 0.5rem 1rem;
+  text-align: center;
+  font-family: ui-sans-serif, system-ui, sans-serif;
+  font-size: 0.85rem;
+}

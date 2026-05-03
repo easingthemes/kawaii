@@ -1,0 +1,41 @@
+---
+import BaseLayout from './BaseLayout.astro';
+
+interface Props {
+  title: string;
+  publishedAt: Date;
+  updatedAt: Date;
+  author?: string;
+  category: string;
+  location?: string;
+  eventDate?: Date;
+  status: 'review' | 'published';
+  summary?: string;
+}
+
+const { title, publishedAt, author, category, location, eventDate, status, summary } = Astro.props;
+
+const fmt = (d: Date) =>
+  d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+---
+
+<BaseLayout title={title} description={summary}>
+  {status === 'review' && (
+    <div class="review-banner">Review preview — not yet published</div>
+  )}
+  <article class="prose">
+    <header>
+      <p class="dateline">
+        {category}
+        {location && <> · {location}</>}
+        {eventDate && <> · {fmt(eventDate)}</>}
+      </p>
+      <h1>{title}</h1>
+      <p class="dateline">
+        {fmt(publishedAt)}
+        {author && <> · By {author}</>}
+      </p>
+    </header>
+    <slot />
+  </article>
+</BaseLayout>

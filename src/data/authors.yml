@@ -1,0 +1,6 @@
+# Map Google account email → display info.
+# The sync script resolves `author` from the Doc's lastModifyingUser email.
+# editor@example.com:
+#   name: Editor Name
+#   bio: Short bio shown on article pages.
+#   avatar: /images/authors/editor.jpg

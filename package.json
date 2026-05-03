@@ -1,0 +1,24 @@
+{
+  "name": "kawaii",
+  "type": "module",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "sync:docs": "node scripts/sync-docs.mjs",
+    "sync:dry": "node scripts/sync-docs.mjs --dry-run"
+  },
+  "dependencies": {
+    "astro": "^5.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "googleapis": "^144.0.0",
+    "gray-matter": "^4.0.3",
+    "js-yaml": "^4.1.0",
+    "typescript": "^5.7.0"
+  }
+}
