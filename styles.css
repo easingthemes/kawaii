@@ -1,0 +1,254 @@
+@import 'tailwindcss';
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+@plugin "@tailwindcss/typography";
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+:root {
+  --highlight-text-dark: #000000;
+  --highlight-text-light: #ffffff;
+  --radius: 0.625rem;
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+  --primary: oklch(0.205 0 0);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.97 0 0);
+  --secondary-foreground: oklch(0.205 0 0);
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+  --accent: oklch(0.97 0 0);
+  --accent-foreground: oklch(0.205 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: oklch(0.922 0 0);
+  --input: oklch(0.922 0 0);
+  --ring: oklch(0.708 0 0);
+  --chart-1: oklch(0.646 0.222 41.116);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+}
+
+.dark {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.205 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.205 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.922 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.556 0 0);
+  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.556 0 0);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Kawaii — site theme
+   Cloned from the tatjanizza theme: near-black warmed toward umber, gold hairlines,
+   an ember glow behind everything, monospace for the machine layer and a serif
+   for the human one. Retune the tokens below when Kawaii gets its own look.
+   --------------------------------------------------------------------------- */
+
+:root {
+  --tz-void: oklch(0.15 0.018 46);
+  --tz-void-deep: oklch(0.11 0.014 44);
+  --tz-ember: oklch(0.62 0.166 44);
+  --tz-gold: oklch(0.79 0.128 76);
+  --tz-gold-dim: oklch(0.62 0.079 74);
+  --tz-parchment: oklch(0.93 0.021 78);
+  --tz-muted: oklch(0.68 0.026 66);
+  --tz-rule: oklch(0.79 0.128 76 / 22%);
+  --tz-rule-soft: oklch(0.79 0.128 76 / 10%);
+}
+
+/* The site is dark throughout, so the shadcn tokens are re-pointed at the palette
+   above rather than patched per component. Declared after :root so these win. */
+:root {
+  --background: var(--tz-void);
+  --foreground: var(--tz-parchment);
+  --card: var(--tz-void-deep);
+  --card-foreground: var(--tz-parchment);
+  --popover: var(--tz-void-deep);
+  --popover-foreground: var(--tz-parchment);
+  --primary: var(--tz-gold);
+  --primary-foreground: var(--tz-void);
+  --secondary: oklch(0.22 0.022 46);
+  --secondary-foreground: var(--tz-parchment);
+  --muted: oklch(0.22 0.022 46);
+  --muted-foreground: var(--tz-muted);
+  --accent: oklch(0.24 0.03 46);
+  --accent-foreground: var(--tz-gold);
+  --border: var(--tz-rule-soft);
+  --input: var(--tz-rule);
+  --ring: var(--tz-gold-dim);
+}
+
+.tz {
+  background-color: var(--tz-void);
+  color: var(--tz-parchment);
+  font-family: var(--font-lato), ui-sans-serif, system-ui, sans-serif;
+}
+
+/* Ember light, as in the covers: a low sun behind the stones. */
+.tz-glow {
+  position: relative;
+  isolation: isolate;
+}
+.tz-glow::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(90ch 60ch at 50% -10%, oklch(0.62 0.166 44 / 26%), transparent 70%),
+    radial-gradient(70ch 50ch at 85% 15%, oklch(0.79 0.128 76 / 10%), transparent 65%);
+}
+
+.tz-display {
+  font-family: var(--font-serif), ui-serif, Georgia, serif;
+  font-weight: 400;
+  letter-spacing: -0.015em;
+  line-height: 1.06;
+}
+
+/* The machine layer: HUD labels, dates, languages, credits. */
+.tz-mono {
+  font-family: var(--font-mono), ui-monospace, SFMono-Regular, monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--tz-gold-dim);
+}
+
+.tz-rule {
+  border-color: var(--tz-rule);
+}
+
+/* Poetry and statement prose — wide leading, never full-width. */
+.tz-prose {
+  font-family: var(--font-serif), ui-serif, Georgia, serif;
+  font-size: clamp(1.0625rem, 0.55vw + 0.94rem, 1.3125rem);
+  line-height: 1.75;
+  color: oklch(0.9 0.02 76);
+}
+.tz-prose p {
+  margin-block: 1.15em;
+  max-width: 62ch;
+}
+.tz-prose p:first-child {
+  margin-block-start: 0;
+}
+.tz-prose em {
+  color: var(--tz-gold);
+  font-style: italic;
+}
+.tz-prose strong {
+  color: var(--tz-parchment);
+  font-weight: 600;
+}
+.tz-prose a {
+  color: var(--tz-gold);
+  text-underline-offset: 0.25em;
+  text-decoration-color: var(--tz-rule);
+}
+.tz-prose a:hover {
+  text-decoration-color: var(--tz-gold);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .tz-rise {
+    animation: tz-rise 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+}
+
+@keyframes tz-rise {
+  from {
+    opacity: 0;
+    transform: translateY(0.75rem);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "header": {
+    "icon": {
+      "name": "Kawaii",
+      "color": "gold",
+      "style": "regular"
+    },
+    "name": "Kawaii",
+    "color": "default",
+    "nav": [
+      {
+        "href": "/",
+        "label": "Home"
+      },
+      {
+        "href": "/about",
+        "label": "About"
+      },
+      {
+        "href": "/posts",
+        "label": "Posts"
+      }
+    ]
+  },
+  "footer": {
+    "social": []
+  },
+  "theme": {
+    "color": "blue",
+    "font": "sans",
+    "darkMode": "light"
+  }
+}
