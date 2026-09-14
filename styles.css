@@ -124,125 +124,129 @@
 
 /* ---------------------------------------------------------------------------
    Kawaii — site theme
-   Cloned from the tatjanizza theme: near-black warmed toward umber, gold hairlines,
-   an ember glow behind everything, monospace for the machine layer and a serif
-   for the human one. Retune the tokens below when Kawaii gets its own look.
+
+   Light, soft and warm: a near-white page with a blush tint, plum ink, rose as
+   the accent and lilac behind the hero. Rounded corners and generous leading.
+   Replaces the dark gold theme this codebase was cloned from — the structure of
+   the tokens is the same, only the values changed, so blocks did not need edits.
    --------------------------------------------------------------------------- */
 
 :root {
-  --tz-void: oklch(0.15 0.018 46);
-  --tz-void-deep: oklch(0.11 0.014 44);
-  --tz-ember: oklch(0.62 0.166 44);
-  --tz-gold: oklch(0.79 0.128 76);
-  --tz-gold-dim: oklch(0.62 0.079 74);
-  --tz-parchment: oklch(0.93 0.021 78);
-  --tz-muted: oklch(0.68 0.026 66);
-  --tz-rule: oklch(0.79 0.128 76 / 22%);
-  --tz-rule-soft: oklch(0.79 0.128 76 / 10%);
+  --kw-bg: oklch(0.985 0.008 20);
+  --kw-bg-deep: oklch(0.965 0.018 340);
+  --kw-card: oklch(1 0 0);
+  --kw-ink: oklch(0.31 0.045 330);
+  --kw-ink-soft: oklch(0.52 0.032 330);
+  --kw-accent: oklch(0.62 0.16 5);
+  --kw-accent-soft: oklch(0.88 0.06 5);
+  --kw-lilac: oklch(0.86 0.06 300);
+  --kw-rule: oklch(0.62 0.16 5 / 22%);
+  --kw-rule-soft: oklch(0.62 0.16 5 / 10%);
 }
 
-/* The site is dark throughout, so the shadcn tokens are re-pointed at the palette
-   above rather than patched per component. Declared after :root so these win. */
+/* The shadcn tokens are re-pointed at the palette above rather than patched per
+   component. Declared after the block above so these win. */
 :root {
-  --background: var(--tz-void);
-  --foreground: var(--tz-parchment);
-  --card: var(--tz-void-deep);
-  --card-foreground: var(--tz-parchment);
-  --popover: var(--tz-void-deep);
-  --popover-foreground: var(--tz-parchment);
-  --primary: var(--tz-gold);
-  --primary-foreground: var(--tz-void);
-  --secondary: oklch(0.22 0.022 46);
-  --secondary-foreground: var(--tz-parchment);
-  --muted: oklch(0.22 0.022 46);
-  --muted-foreground: var(--tz-muted);
-  --accent: oklch(0.24 0.03 46);
-  --accent-foreground: var(--tz-gold);
-  --border: var(--tz-rule-soft);
-  --input: var(--tz-rule);
-  --ring: var(--tz-gold-dim);
+  --background: var(--kw-bg);
+  --foreground: var(--kw-ink);
+  --card: var(--kw-card);
+  --card-foreground: var(--kw-ink);
+  --popover: var(--kw-card);
+  --popover-foreground: var(--kw-ink);
+  --primary: var(--kw-accent);
+  --primary-foreground: oklch(1 0 0);
+  --secondary: oklch(0.95 0.02 340);
+  --secondary-foreground: var(--kw-ink);
+  --muted: oklch(0.95 0.02 340);
+  --muted-foreground: var(--kw-ink-soft);
+  --accent: oklch(0.94 0.03 300);
+  --accent-foreground: var(--kw-ink);
+  --border: var(--kw-rule-soft);
+  --input: var(--kw-rule);
+  --ring: var(--kw-accent-soft);
 }
 
-.tz {
-  background-color: var(--tz-void);
-  color: var(--tz-parchment);
-  font-family: var(--font-lato), ui-sans-serif, system-ui, sans-serif;
+.kw-page {
+  background-color: var(--kw-bg);
+  color: var(--kw-ink);
+  font-family: var(--font-nunito), ui-rounded, ui-sans-serif, system-ui, sans-serif;
 }
 
-/* Ember light, as in the covers: a low sun behind the stones. */
-.tz-glow {
+/* A soft wash behind the top of the page, instead of the ember glow. */
+.kw-glow {
   position: relative;
   isolation: isolate;
 }
-.tz-glow::before {
+.kw-glow::before {
   content: '';
   position: absolute;
   inset: 0;
   z-index: -1;
   pointer-events: none;
   background:
-    radial-gradient(90ch 60ch at 50% -10%, oklch(0.62 0.166 44 / 26%), transparent 70%),
-    radial-gradient(70ch 50ch at 85% 15%, oklch(0.79 0.128 76 / 10%), transparent 65%);
+    radial-gradient(90ch 60ch at 50% -10%, oklch(0.88 0.06 5 / 55%), transparent 70%),
+    radial-gradient(70ch 50ch at 85% 15%, oklch(0.86 0.06 300 / 45%), transparent 65%);
 }
 
-.tz-display {
-  font-family: var(--font-serif), ui-serif, Georgia, serif;
-  font-weight: 400;
-  letter-spacing: -0.015em;
-  line-height: 1.06;
+.kw-display {
+  font-family: var(--font-nunito), ui-rounded, ui-sans-serif, system-ui, sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
 }
 
-/* The machine layer: HUD labels, dates, languages, credits. */
-.tz-mono {
-  font-family: var(--font-mono), ui-monospace, SFMono-Regular, monospace;
-  font-size: 0.7rem;
-  letter-spacing: 0.22em;
+/* Small labels: section kickers, dates, places. */
+.kw-mono {
+  font-family: var(--font-nunito), ui-rounded, ui-sans-serif, system-ui, sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--tz-gold-dim);
+  color: var(--kw-ink-soft);
 }
 
-.tz-rule {
-  border-color: var(--tz-rule);
+.kw-rule {
+  border-color: var(--kw-rule);
 }
 
-/* Poetry and statement prose — wide leading, never full-width. */
-.tz-prose {
-  font-family: var(--font-serif), ui-serif, Georgia, serif;
-  font-size: clamp(1.0625rem, 0.55vw + 0.94rem, 1.3125rem);
+/* Body copy — wide leading, never full-width. */
+.kw-prose {
+  font-family: var(--font-nunito), ui-rounded, ui-sans-serif, system-ui, sans-serif;
+  font-size: clamp(1.0625rem, 0.4vw + 0.98rem, 1.1875rem);
   line-height: 1.75;
-  color: oklch(0.9 0.02 76);
+  color: var(--kw-ink-soft);
 }
-.tz-prose p {
+.kw-prose p {
   margin-block: 1.15em;
   max-width: 62ch;
 }
-.tz-prose p:first-child {
+.kw-prose p:first-child {
   margin-block-start: 0;
 }
-.tz-prose em {
-  color: var(--tz-gold);
+.kw-prose em {
+  color: var(--kw-accent);
   font-style: italic;
 }
-.tz-prose strong {
-  color: var(--tz-parchment);
-  font-weight: 600;
+.kw-prose strong {
+  color: var(--kw-ink);
+  font-weight: 700;
 }
-.tz-prose a {
-  color: var(--tz-gold);
+.kw-prose a {
+  color: var(--kw-accent);
   text-underline-offset: 0.25em;
-  text-decoration-color: var(--tz-rule);
+  text-decoration-color: var(--kw-rule);
 }
-.tz-prose a:hover {
-  text-decoration-color: var(--tz-gold);
+.kw-prose a:hover {
+  text-decoration-color: var(--kw-accent);
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .tz-rise {
-    animation: tz-rise 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+  .kw-rise {
+    animation: kw-rise 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
   }
 }
 
-@keyframes tz-rise {
+@keyframes kw-rise {
   from {
     opacity: 0;
     transform: translateY(0.75rem);

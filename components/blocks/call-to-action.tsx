@@ -41,7 +41,7 @@ export const CallToAction = ({ data }: { data: PageBlocksCta }) => {
 
 export const ctaBlockSchema: Template = {
     name: "cta",
-    label: "CTA",
+    label: "Call to action",
     ui: {
         previewSrc: "/blocks/cta.png",
         defaultItem: {

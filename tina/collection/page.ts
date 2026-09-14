@@ -1,17 +1,12 @@
 import type { Collection } from 'tinacms';
-import { heroBlockSchema } from '@/components/blocks/hero';
 import { contentBlockSchema } from '@/components/blocks/content';
-import { testimonialBlockSchema } from '@/components/blocks/testimonial';
-import { featureBlockSchema } from '@/components/blocks/features';
 import { videoBlockSchema } from '@/components/blocks/video';
-import { calloutBlockSchema } from '@/components/blocks/callout';
-import { statsBlockSchema } from '@/components/blocks/stats';
 import { ctaBlockSchema } from '@/components/blocks/call-to-action';
-import { tzHeroBlockSchema } from '@/components/blocks/tz-hero';
-import { tzProseBlockSchema } from '@/components/blocks/tz-prose';
-import { tzTimelineBlockSchema } from '@/components/blocks/tz-timeline';
-import { tzTracksBlockSchema } from '@/components/blocks/tz-tracks';
-import { tzCreditsBlockSchema } from '@/components/blocks/tz-credits';
+import { kwHeroBlockSchema } from '@/components/blocks/kw-hero';
+import { kwProseBlockSchema } from '@/components/blocks/kw-prose';
+import { kwTimelineBlockSchema } from '@/components/blocks/kw-timeline';
+import { kwGalleryBlockSchema } from '@/components/blocks/kw-gallery';
+import { kwEventsBlockSchema } from '@/components/blocks/kw-events';
 import { seoSchemaField } from '@/tina/fields/seo';
 
 const Page: Collection = {
@@ -48,19 +43,16 @@ const Page: Collection = {
       ui: {
         visualSelector: true,
       },
+      // Deliberately short. Every extra block is one more thing to scroll past in
+      // the "add section" picker, and this site is edited from a phone.
       templates: [
-        tzHeroBlockSchema,
-        tzProseBlockSchema,
-        tzTimelineBlockSchema,
-        tzTracksBlockSchema,
-        tzCreditsBlockSchema,
-        heroBlockSchema,
-        calloutBlockSchema,
-        featureBlockSchema,
-        statsBlockSchema,
+        kwHeroBlockSchema,
+        kwProseBlockSchema,
+        kwGalleryBlockSchema,
+        kwEventsBlockSchema,
+        kwTimelineBlockSchema,
         ctaBlockSchema,
         contentBlockSchema,
-        testimonialBlockSchema,
         videoBlockSchema,
       ],
     },

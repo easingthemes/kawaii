@@ -95,7 +95,7 @@ export default function RootLayout({
         fontMono.variable,
       )}
     >
-      <body className="tz min-h-screen antialiased">
+      <body className="kw-page min-h-screen antialiased">
         <VideoDialogProvider>
           {children}
           <VideoDialog />

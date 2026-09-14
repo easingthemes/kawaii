@@ -1,11 +1,13 @@
 # kawaii
 
-Website for **Kawaii**, with all content editable through a visual CMS rather than by editing code.
+Kaja's site — a blog, the events she covers, and the photos. All content is editable through a
+visual CMS rather than by editing code.
 
-The setup is a clone of [easingthemes/tatjanizza](https://github.com/easingthemes/tatjanizza) —
-Next.js + TinaCMS, content stored as files in the repo, no database. The code is complete; the
-content in `content/` is still placeholder and the theme in `styles.css` is still the one inherited
-from that site.
+Built on the same setup as [easingthemes/tatjanizza](https://github.com/easingthemes/tatjanizza):
+Next.js + TinaCMS, content stored as files in the repo, no database. Everything under `content/` is
+demo content meant to be replaced.
+
+Pages: `/` home, `/posts` blog, `/events` upcoming and covered, `/gallery` photos, `/about`.
 
 | | |
 |---|---|
@@ -70,9 +72,8 @@ This repo carries working code but has never been deployed. Before it is a live 
    `NEXT_PUBLIC_TINA_BRANCH` in the Vercel project settings, not only in local `.env`.
 3. **Set the real domain** in `lib/seo.ts` (`SITE_URL`, `SITE_NAME`, `SITE_DESCRIPTION`) —
    `metadataBase` and all OpenGraph paths are built from it.
-4. **Replace the placeholder content** in `content/pages/` and `content/global/index.json`, and the
-   site mark in `components/icon.tsx`.
-5. **Retune the theme** in `styles.css` — the palette and fonts are inherited, not chosen for Kawaii.
+4. **Replace the demo content** in `content/pages/`, `content/posts/` and
+   `content/global/index.json`, and the site mark in `components/icon.tsx`.
 
 ## Deployment
 

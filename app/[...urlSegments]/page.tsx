@@ -4,8 +4,8 @@ import { notFound } from 'next/navigation';
 import client from '@/tina/__generated__/client';
 import Layout from '@/components/layout/layout';
 import { Section } from '@/components/layout/section';
-import { JsonLd, albumJsonLd, toIsoDate } from '@/lib/json-ld';
-import { SITE_DESCRIPTION, SITE_URL, pageMetadata } from '@/lib/seo';
+import { JsonLd, eventsJsonLd } from '@/lib/json-ld';
+import { pageMetadata } from '@/lib/seo';
 import ClientPage from './client-page';
 
 export const revalidate = 300;
@@ -34,25 +34,14 @@ export async function generateMetadata({
 }
 
 /**
- * Builds the album record from what the page already says, so the structured data
- * cannot drift away from the visible text: the track list comes from the Selected
- * works block and the release date from the Provenance block.
+ * Collects every event on the page into one structured-data record, so the dates
+ * are machine-readable as well as visible. Reads the same block the page renders,
+ * so the two cannot drift apart.
  */
-function albumFor(page: any, path: string) {
+function eventsFor(page: any, path: string) {
   const blocks: any[] = page.blocks ?? [];
-  const tracks = blocks.find((block) => block?.__typename === 'PageBlocksTzTracks');
-  if (!tracks?.tracks?.length || !page.title) return null;
-
-  const credits = blocks.find((block) => block?.__typename === 'PageBlocksTzCredits');
-  const released = credits?.entries?.find((entry: any) => /first released/i.test(entry?.term ?? ''))?.value;
-
-  return albumJsonLd({
-    name: page.title,
-    description: page.seo?.description || SITE_DESCRIPTION,
-    url: `${SITE_URL}${path}`,
-    datePublished: toIsoDate(released),
-    tracks: tracks.tracks,
-  });
+  const events = blocks.filter((block) => block?.__typename === 'PageBlocksKwEvents').flatMap((block) => block?.events ?? []);
+  return eventsJsonLd({ events, path });
 }
 
 export default async function Page({
@@ -64,11 +53,11 @@ export default async function Page({
   const data = await getPage(urlSegments);
   if (!data) notFound();
 
-  const album = albumFor(data.data.page as any, `/${pathOf(urlSegments)}`);
+  const events = eventsFor(data.data.page as any, `/${pathOf(urlSegments)}`);
 
   return (
     <Layout rawPageData={data}>
-      {album && <JsonLd data={album} />}
+      {events && <JsonLd data={events} />}
       <Section>
         <ClientPage {...data} />
       </Section>

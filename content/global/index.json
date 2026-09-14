@@ -2,23 +2,27 @@
   "header": {
     "icon": {
       "name": "Kawaii",
-      "color": "gold",
+      "color": "pink",
       "style": "regular"
     },
-    "name": "Kawaii",
+    "name": "Kaja",
     "color": "default",
     "nav": [
       {
-        "href": "/",
-        "label": "Home"
+        "href": "/posts",
+        "label": "Blog"
+      },
+      {
+        "href": "/events",
+        "label": "Events"
+      },
+      {
+        "href": "/gallery",
+        "label": "Gallery"
       },
       {
         "href": "/about",
         "label": "About"
-      },
-      {
-        "href": "/posts",
-        "label": "Posts"
       }
     ]
   },
@@ -26,8 +30,8 @@
     "social": []
   },
   "theme": {
-    "color": "blue",
-    "font": "sans",
+    "color": "pink",
+    "font": "nunito",
     "darkMode": "light"
   }
 }

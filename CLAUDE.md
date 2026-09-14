@@ -11,10 +11,26 @@ Companion docs: [CONTRIBUTING.md](./CONTRIBUTING.md) for the human dev workflow 
 
 This is a clone of [easingthemes/tatjanizza](https://github.com/easingthemes/tatjanizza) — the whole Next.js + TinaCMS setup copied over so Kawaii gets the same file-based, click-to-edit CMS. Consequences worth knowing:
 
-- **Content is placeholder.** `content/pages/home.mdx` and `content/global/index.json` are stubs; `content/pages/about.mdx` is still the unmodified TinaCMS starter help page (marked `noindex`).
-- **The theme is inherited.** The palette, fonts and hairlines in `styles.css` were designed for a different site. Retune them rather than assuming they were chosen here.
-- **The `tz*` blocks came across whole** — `tzHero`, `tzProse`, `tzTracks`, `tzTimeline`, `tzCredits`. `tzTracks` and the `albumJsonLd` helper in `lib/json-ld.tsx` are music-catalogue specific. Keep them if Kawaii needs them, delete all three touchpoints (component, `tina/collection/page.ts`, the `Block` switch) if it doesn't.
-- **Nothing is deployed yet.** There is no Vercel project and no TinaCloud project for this repo. See README, "Setup still to do".
+- **Content is demo content.** Every page and post under `content/` is an example written to show the shape of the thing, not real writing. It is all meant to be replaced.
+- **The theme was retuned** away from the dark gold one it was cloned from: light, blush background, plum ink, rose accent, Nunito throughout. Tokens are `--kw-*` in `styles.css`; the blocks read those tokens and nothing else, so the whole look changes from that one block.
+- **The block picker is deliberately short.** Eight blocks, in `tina/collection/page.ts`. The music-specific ones (tracks, credits) and the unused starter ones (features, stats, testimonial, callout, stock hero) were deleted, not just unregistered. They are recoverable from `easingthemes/tatjanizza` if ever wanted.
+- **Nothing is deployed yet.** See README, "Setup still to do".
+
+### The blocks
+
+| Block | File | For |
+|---|---|---|
+| Big intro (hero) | `components/blocks/kw-hero.tsx` | the top of a page |
+| Text section | `components/blocks/kw-prose.tsx` | the workhorse — label, heading, prose |
+| Photo gallery | `components/blocks/kw-gallery.tsx` | responsive photo grid, alt text + optional caption |
+| Events list | `components/blocks/kw-events.tsx` | dated entries, sorted soonest- or newest-first |
+| Timeline | `components/blocks/kw-timeline.tsx` | dated list down a rule |
+| Call to action, Plain text, Video | inherited from the starter | |
+
+Two things in the gallery and events blocks are load-bearing and easy to undo by accident:
+
+- **Neither block reads the current date.** Event ordering is an editor choice, not "upcoming vs past" computed from `Date.now()`. These are client components, so anything derived from the current time renders on the server at ISR time and again in the browser, and the two can disagree — that is a hydration error, not just a stale date.
+- **`formatDate` in `kw-events.tsx` parses the ISO string with a regex** rather than `new Date()`, for the same reason: a `Date` formats in the viewer's timezone and can land on a different day than the server picked.
 
 `main` is the default branch and is intended to be production once the Vercel project exists. Unlike the repo this came from, there is no long-lived working branch here — branch from `main`.
 
@@ -88,7 +104,7 @@ Schema co-location is the core convention here: Tina schemas import from `compon
 
 ### Site identity and SEO
 
-`lib/seo.ts` holds `SITE_URL`, `SITE_NAME`, `SITE_DESCRIPTION` and the fallback share image, and exports `pageMetadata()` used by every route. `app/layout.tsx` builds `metadataBase` from `SITE_URL` — change the domain there, not in the layout. `lib/json-ld.tsx` emits the structured data; `personJsonLd()` is generic, `albumJsonLd()` is music-specific and pairs with the `tzTracks` block.
+`lib/seo.ts` holds `SITE_URL`, `SITE_NAME`, `SITE_DESCRIPTION` and the fallback share image, and exports `pageMetadata()` used by every route. `app/layout.tsx` builds `metadataBase` from `SITE_URL` — change the domain in `lib/seo.ts`, not in the layout. `lib/json-ld.tsx` emits the structured data: `personJsonLd()` on the home page, and `eventsJsonLd()` on any page carrying an Events block, built from the same block the page renders so the two cannot drift apart.
 
 ### Custom Tina field UIs
 
@@ -100,7 +116,7 @@ Schema co-location is the core convention here: Tina schemas import from `compon
 
 ### Collections
 
-`page` (`content/pages`, mdx, blocks-only), `post` (`content/posts`, mdx, references `author`/`tag`), `author`, `tag`, `global` (json, `ui.global: true`). Each collection's `ui.router` maps a document to its URL — `page` special-cases `home` → `/`. `content/posts`, `content/authors` and `content/tags` are currently empty; `/posts` renders an empty list until something is added.
+`page` (`content/pages`, mdx, blocks-only), `post` (`content/posts`, mdx, references `author`/`tag`), `author`, `tag`, `global` (json, `ui.global: true`). Each collection's `ui.router` maps a document to its URL — `page` special-cases `home` → `/`.
 
 ## Conventions
 

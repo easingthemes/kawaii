@@ -3,19 +3,19 @@ import React from 'react';
 import type { Template } from 'tinacms';
 import { tinaField } from 'tinacms/dist/react';
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
-import { PageBlocksTzProse } from '../../tina/__generated__/types';
+import { PageBlocksKwProse } from '../../tina/__generated__/types';
 
 /**
- * A statement section: small monospace label, serif heading, prose.
- * Used for TWO MILLION YEARS, THE IDEA, LANGUAGE AS TIME and the rest.
+ * A text section: small label in the left column, heading and prose on the right.
+ * The workhorse block — most written content on the site is one of these.
  */
-export const TzProse = ({ data }: { data: PageBlocksTzProse }) => {
+export const KwProse = ({ data }: { data: PageBlocksKwProse }) => {
   return (
-    <section className='border-b tz-rule'>
+    <section className='border-b kw-rule'>
       <div className='mx-auto grid max-w-5xl gap-y-6 px-6 py-20 sm:py-28 md:grid-cols-[13rem_1fr] md:gap-x-12'>
         <div className='md:pt-3'>
           {data.label && (
-            <p className='tz-mono' data-tina-field={tinaField(data, 'label')}>
+            <p className='kw-mono' data-tina-field={tinaField(data, 'label')}>
               {data.label}
             </p>
           )}
@@ -24,7 +24,7 @@ export const TzProse = ({ data }: { data: PageBlocksTzProse }) => {
         <div>
           {data.heading && (
             <h2
-              className='tz-display text-[clamp(1.9rem,4vw,3rem)] text-[var(--tz-parchment)]'
+              className='kw-display text-[clamp(1.9rem,4vw,3rem)] text-[var(--kw-ink)]'
               data-tina-field={tinaField(data, 'heading')}
             >
               {data.heading}
@@ -32,14 +32,14 @@ export const TzProse = ({ data }: { data: PageBlocksTzProse }) => {
           )}
 
           {data.subheading && (
-            <p className='mt-3 text-lg text-[var(--tz-gold-dim)]' data-tina-field={tinaField(data, 'subheading')}>
+            <p className='mt-3 text-lg text-[var(--kw-ink-soft)]' data-tina-field={tinaField(data, 'subheading')}>
               {data.subheading}
             </p>
           )}
 
           {data.body && (
             <div
-              className={`tz-prose ${data.heading || data.subheading ? 'mt-8' : ''}`}
+              className={`kw-prose ${data.heading || data.subheading ? 'mt-8' : ''}`}
               data-tina-field={tinaField(data, 'body')}
             >
               <TinaMarkdown content={data.body} />
@@ -51,13 +51,13 @@ export const TzProse = ({ data }: { data: PageBlocksTzProse }) => {
   );
 };
 
-export const tzProseBlockSchema: Template = {
-  name: 'tzProse',
-  label: 'TZ — Statement section',
+export const kwProseBlockSchema: Template = {
+  name: 'kwProse',
+  label: 'Text section',
   ui: {
     defaultItem: {
-      label: 'The idea',
-      heading: 'The project did not begin with generative music.',
+      label: 'About',
+      heading: 'A short heading goes here.',
     },
     itemProps: (item) => ({ label: item?.heading || item?.label }),
   },

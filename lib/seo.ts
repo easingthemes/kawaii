@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
 
 export const SITE_URL = 'https://kawaii.vercel.app';
-export const SITE_NAME = 'Kawaii';
-export const SITE_DESCRIPTION = 'Kawaii — a site edited straight from the browser.';
+export const SITE_NAME = 'Kaja';
+export const SITE_DESCRIPTION = 'Kaja writes about the events she goes to, and puts the photos here.';
 
 /** Fallback share image. Square, so it is declared as such rather than lied about as 1200x630. */
 export const DEFAULT_OG_IMAGE = { url: '/uploads/posts/main.jpg', width: 1024, height: 1024 };
@@ -35,8 +35,8 @@ export function pageMetadata({
   const url = path === '/' ? '/' : path;
 
   return {
-    // `title.absolute` skips the "%s | Kawaii" template — the home page is already
-    // called Kawaii, and inner pages carry the site name in their own SEO title when they want it.
+    // `title.absolute` skips the "%s | Kaja" template — the home page is already
+    // called Kaja, and inner pages carry the site name in their own SEO title when they want it.
     title: { absolute: resolvedTitle },
     description,
     alternates: { canonical: url },

@@ -1,20 +1,15 @@
-import { tinaField } from "tinacms/dist/react";
-import { Page, PageBlocks } from "../../tina/__generated__/types";
-import { Hero } from "./hero";
-import { Content } from "./content";
-import { Features } from "./features";
-import { Testimonial } from "./testimonial";
-import { Video } from "./video";
-import { Callout } from "./callout";
-import { Stats } from "./stats";
-import { CallToAction } from "./call-to-action";
-import { TzHero } from "./tz-hero";
-import { TzProse } from "./tz-prose";
-import { TzTimeline } from "./tz-timeline";
-import { TzTracks } from "./tz-tracks";
-import { TzCredits } from "./tz-credits";
+import { tinaField } from 'tinacms/dist/react';
+import { Page, PageBlocks } from '../../tina/__generated__/types';
+import { Content } from './content';
+import { Video } from './video';
+import { CallToAction } from './call-to-action';
+import { KwHero } from './kw-hero';
+import { KwProse } from './kw-prose';
+import { KwTimeline } from './kw-timeline';
+import { KwGallery } from './kw-gallery';
+import { KwEvents } from './kw-events';
 
-export const Blocks = (props: Omit<Page, "id" | "_sys" | "_values">) => {
+export const Blocks = (props: Omit<Page, 'id' | '_sys' | '_values'>) => {
   if (!props.blocks) return null;
   return (
     <>
@@ -31,32 +26,22 @@ export const Blocks = (props: Omit<Page, "id" | "_sys" | "_values">) => {
 
 const Block = (block: PageBlocks) => {
   switch (block.__typename) {
-    case "PageBlocksVideo":
-      return <Video data={block} />;
-    case "PageBlocksHero":
-      return <Hero data={block} />;
-    case "PageBlocksCallout":
-      return <Callout data={block} />;
-    case "PageBlocksStats":
-      return <Stats data={block} />;
-    case "PageBlocksContent":
-      return <Content data={block} />;
-    case "PageBlocksFeatures":
-      return <Features data={block} />;
-    case "PageBlocksTestimonial":
-      return <Testimonial data={block} />;
-    case "PageBlocksCta":
+    case 'PageBlocksKwHero':
+      return <KwHero data={block} />;
+    case 'PageBlocksKwProse':
+      return <KwProse data={block} />;
+    case 'PageBlocksKwGallery':
+      return <KwGallery data={block} />;
+    case 'PageBlocksKwEvents':
+      return <KwEvents data={block} />;
+    case 'PageBlocksKwTimeline':
+      return <KwTimeline data={block} />;
+    case 'PageBlocksCta':
       return <CallToAction data={block} />;
-    case "PageBlocksTzHero":
-      return <TzHero data={block} />;
-    case "PageBlocksTzProse":
-      return <TzProse data={block} />;
-    case "PageBlocksTzTimeline":
-      return <TzTimeline data={block} />;
-    case "PageBlocksTzTracks":
-      return <TzTracks data={block} />;
-    case "PageBlocksTzCredits":
-      return <TzCredits data={block} />;
+    case 'PageBlocksContent':
+      return <Content data={block} />;
+    case 'PageBlocksVideo':
+      return <Video data={block} />;
     default:
       return null;
   }
