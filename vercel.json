@@ -1,0 +1,9 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "buildCommand": "pnpm build-local",
+  "build": {
+    "env": {
+      "NODE_OPTIONS": "--max-old-space-size=3072"
+    }
+  }
+}

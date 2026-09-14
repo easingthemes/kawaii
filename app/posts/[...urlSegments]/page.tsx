@@ -4,7 +4,14 @@ import client from '@/tina/__generated__/client';
 import Layout from '@/components/layout/layout';
 import PostClientPage from './client-page';
 
-export const revalidate = 300;
+// See the note in app/page.tsx: content comes from the repo at build time, so a
+// runtime re-render has nothing new to fetch and a failed TinaCloud query would
+// cache a 404 over a working page.
+export const revalidate = false;
+
+// generateStaticParams below enumerates every post, so anything else is a genuine
+// 404 rather than something to fetch on a live request.
+export const dynamicParams = false;
 
 export default async function PostPage({
   params,

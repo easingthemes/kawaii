@@ -2,7 +2,8 @@ import type { MetadataRoute } from 'next';
 import client from '@/tina/__generated__/client';
 import { SITE_URL } from '@/lib/seo';
 
-export const revalidate = 3600;
+// Built from repo content at build time; see the note in app/page.tsx.
+export const revalidate = false;
 
 /** Collects every page document's breadcrumbs, following the connection cursors. */
 async function allPageBreadcrumbs(): Promise<string[][]> {
