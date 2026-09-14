@@ -15,6 +15,10 @@ content, no design, and nothing is deployed yet.
 | Intended domain | `kawaiikaja.com` — **registered at DreamHost, not pointed anywhere yet** |
 | Host | not chosen yet |
 
+The full path from here to a live site on the domain — TinaCloud, Vercel, DNS, env vars and who
+needs which login — is written down in [docs/setup-tinacms-site.md](./docs/setup-tinacms-site.md).
+Note that `tina/tina-lock.json` is not in the repo yet; TinaCloud cannot index content without it.
+
 > [!NOTE]
 > `kawaiikaja.com` still delegates to `ns1`–`ns3.dreamhost.com` and has no A or CNAME record, so the
 > two site URLs configured in TinaCloud cannot resolve yet. Pick a host first, then point DNS at it.
