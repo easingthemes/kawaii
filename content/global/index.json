@@ -1,0 +1,37 @@
+{
+  "header": {
+    "icon": {
+      "name": "Kawaii",
+      "color": "pink",
+      "style": "regular"
+    },
+    "name": "Kaja",
+    "color": "default",
+    "nav": [
+      {
+        "href": "/posts",
+        "label": "Blog"
+      },
+      {
+        "href": "/events",
+        "label": "Events"
+      },
+      {
+        "href": "/gallery",
+        "label": "Gallery"
+      },
+      {
+        "href": "/about",
+        "label": "About"
+      }
+    ]
+  },
+  "footer": {
+    "social": []
+  },
+  "theme": {
+    "color": "pink",
+    "font": "nunito",
+    "darkMode": "light"
+  }
+}
