@@ -8,7 +8,20 @@ import { JsonLd, eventsJsonLd } from '@/lib/json-ld';
 import { pageMetadata } from '@/lib/seo';
 import ClientPage from './client-page';
 
-export const revalidate = 300;
+// Content is read from the repo at build time (see vercel.json — the build runs
+// `--content=local`), so there is nothing for a runtime re-render to fetch that the
+// build did not already have. Revalidating anyway sends a query to TinaCloud on a
+// live request, and when that fails the page is replaced by a 404 that then gets
+// cached — which is exactly what happened on the first TinaCloud deploy.
+//
+// Publishing still works: saving in /admin commits to the repo, which triggers a
+// Vercel build, which regenerates these pages.
+export const revalidate = false;
+
+// generateStaticParams below enumerates every content file, so anything else is a
+// genuine 404. Without this, an unknown path is rendered on demand and queries
+// TinaCloud on a live request.
+export const dynamicParams = false;
 
 const pathOf = (segments: string[]) => segments.join('/');
 

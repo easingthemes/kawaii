@@ -81,6 +81,20 @@ What is left:
 
 ## Deployment
 
+> [!IMPORTANT]
+> **Pages are fully static and never re-render at runtime.** `vercel.json` pins the build to
+> `pnpm build-local` (`--content=local`), which reads content from the repo at build time, and every
+> route sets `revalidate = false`. Publishing still works — saving in `/admin` commits to the repo,
+> which triggers a build.
+>
+> This is deliberate, not a shortcut. With `revalidate` on, a live request re-renders the page and
+> queries TinaCloud; when that query fails, Next caches a 404 over a page that was fine. That is
+> what happened on the first TinaCloud deploy — `/about`, `/events`, `/gallery` and the posts all
+> turned into cached 404s while the build was green.
+>
+> `vercel.json` also caps the build heap; Vercel's Hobby build container has 8 GB and this build was
+> SIGKILLed at the default ceiling.
+
 Hosted on **Vercel**, deployed automatically from `main`. Pushing to `main` triggers a production
 deploy — there is no CI workflow in this repo and no manual step. A push is not instant: Vercel needs
 roughly **one to three minutes** to build. Every branch gets its own public preview deployment; see

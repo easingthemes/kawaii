@@ -134,7 +134,10 @@ Hosted on **Vercel**, auto-deployed from `main`. There is no `.github/workflows/
 
 `NEXT_PUBLIC_TINA_CLIENT_ID`, `TINA_TOKEN`, and `NEXT_PUBLIC_TINA_BRANCH` must exist in the Vercel project settings, not only in local `.env`. They are read at **build time**, so changing one does nothing until a redeploy. Scope `NEXT_PUBLIC_TINA_BRANCH` to Production only — see `.env.example`.
 
-A build without those credentials is not a shortcut worth taking. `tinacms build --local` exits 0 and produces a deployable site, but it bakes `url: 'http://localhost:<port>/graphql'` into the generated client — the content server that only exists during the build. Every route here re-renders on the server (`revalidate = 300`), so the pages degrade to the not-found page once their first revalidation window passes. This was tried and reverted; do not reach for it again.
+Two failure modes here are worth knowing before touching the build, because both produce a **green deploy and a broken site**:
+
+- `tinacms build --local` (no credentials) bakes `url: 'http://localhost:<port>/graphql'` into the generated client — a server that only exists during the build. Do not reach for it. `--content=local`, which the build does use, is different: it reads content from the repo at build time and still points the client at TinaCloud.
+- Anything that re-renders on a live request queries TinaCloud, and a failed query makes Next cache a 404 over a working page. Every route therefore sets `revalidate = false`, and the two catch-all routes set `dynamicParams = false`. Turning revalidation back on requires the runtime TinaCloud query to actually work — verify it against the runtime logs, not the deploy status.
 
 **Vercel was chosen deliberately over GitHub Pages — do not propose a static-export conversion unless asked.** Static export is technically feasible (no API routes, middleware, server actions, or `searchParams` anywhere), but it would disable `next/image` optimization, replace ISR with a full rebuild on every content save, and silently ignore `rewrites()` and `headers()`. Four things in the codebase depend on having a server and would break or go inert:
 
