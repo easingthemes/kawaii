@@ -11,8 +11,10 @@ Pages: `/` home, `/posts` blog, `/events` upcoming and covered, `/gallery` photo
 
 | | |
 |---|---|
-| Site | https://kawaii.vercel.app *(Vercel project not created yet — see Deployment)* |
-| Content editing | https://kawaii.vercel.app/admin |
+| Site | https://kawaii-kaidx.vercel.app |
+| Content editing | https://kawaii-kaidx.vercel.app/admin |
+| TinaCloud project | `kawaii` — https://app.tina.io |
+| Intended domain | `kawaiikaja.com` — registered at DreamHost, not pointed anywhere yet |
 
 ## Stack
 
@@ -64,27 +66,20 @@ the filesystem content. TinaCloud is only needed for `/admin` on a deployed site
 
 ## Setup still to do
 
-This repo carries working code but has never been deployed. Before it is a live site:
+Vercel and TinaCloud are connected; the Vercel project is `kawaii` in team `kaidx`, deploying `main`.
+What is left:
 
-1. **Create the Vercel project** and point it at this repo. Production deploys from `main`; every
-   branch gets a preview at `https://kawaii-git-<branch>-<team>.vercel.app`.
-2. **Create the TinaCloud project** and set `NEXT_PUBLIC_TINA_CLIENT_ID`, `TINA_TOKEN` and
-   `NEXT_PUBLIC_TINA_BRANCH` in the Vercel project settings, not only in local `.env`. Then delete
-   `vercel.json` — see below.
-3. **Set the real domain** in `lib/seo.ts` (`SITE_URL`, `SITE_NAME`, `SITE_DESCRIPTION`) —
-   `metadataBase` and all OpenGraph paths are built from it.
+1. **Point `kawaiikaja.com` at Vercel** — add the domain in the Vercel project first, then change DNS
+   at DreamHost. Then set `SITE_URL` in `lib/seo.ts`, which currently says `kawaii.vercel.app`;
+   `metadataBase` and every OpenGraph path are built from it.
+2. **Check `NEXT_PUBLIC_TINA_BRANCH` is scoped to Production only** in Vercel — see `.env.example`
+   for why. Set for Preview too, editing a preview writes to the live site.
+3. **Invite the editor to TinaCloud.** `/admin` needs a TinaCloud invite, not a Vercel or GitHub
+   account.
 4. **Replace the demo content** in `content/pages/`, `content/posts/` and
    `content/global/index.json`, and the site mark in `components/icon.tsx`.
 
 ## Deployment
-
-> [!IMPORTANT]
-> `vercel.json` pins the build to `tinacms build --local`, the same command `scripts/preflight.sh`
-> runs: it serves `content/` over a local GraphQL server and needs no credentials. (Not
-> `pnpm build-local`, which uses `--content=local` and still demands a client ID and token.) That is what makes a deploy possible before a TinaCloud project exists —
-> the site renders and reads correctly, but `/admin` on the deployed site cannot save. **Delete
-> `vercel.json` once the TinaCloud env vars are set**, so Vercel goes back to `pnpm build` and
-> editing works online.
 
 Hosted on **Vercel**, deployed automatically from `main`. Pushing to `main` triggers a production
 deploy — there is no CI workflow in this repo and no manual step. A push is not instant: Vercel needs
