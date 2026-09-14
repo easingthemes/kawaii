@@ -126,8 +126,8 @@ Blocks are the sections that make up a page. `content/pages/*.mdx` holds a `bloc
 `components/blocks/index.tsx` switches on `block.__typename` to pick a component. Adding one means
 touching exactly three places:
 
-1. **Create `components/blocks/<name>.tsx`**, exporting *both* the component and its Tina schema
-   from the same file — e.g. `export const heroBlockSchema: Template`. Include
+1. **Create `components/blocks/kw-<name>.tsx`**, exporting *both* the component and its Tina schema
+   from the same file — e.g. `export const kwGalleryBlockSchema: Template`. Include
    `sectionBlockSchemaField as any` in `fields` to get the shared background option.
 2. **Register the schema** in `tina/collection/page.ts` under `templates`.
 3. **Add a `case`** to the `Block` switch in `components/blocks/index.tsx`.
@@ -136,6 +136,17 @@ Schema co-location is the convention that matters here: Tina schemas import from
 the other way round. The files in `tina/collection/` stay thin.
 
 Then restart `pnpm dev` so the types regenerate.
+
+Two rules the existing blocks follow, worth keeping:
+
+- **Give the block a plain-English `label`.** It is what shows up in the "add section" picker for
+  whoever edits the site, so "Photo gallery", not "kwGallery".
+- **Never derive anything from the current date inside a block.** Blocks are client components:
+  a value computed from `Date.now()` is computed once on the server when the page is generated and
+  again in the browser, and when the two disagree React throws a hydration error. Same trap with
+  `new Date(isoString)` for display — it formats in the viewer's timezone and can land on a
+  different day. `kw-events.tsx` reads the date out of the string with a regex for exactly this
+  reason.
 
 ## Adding a collection
 
