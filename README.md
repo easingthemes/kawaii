@@ -69,13 +69,21 @@ This repo carries working code but has never been deployed. Before it is a live 
 1. **Create the Vercel project** and point it at this repo. Production deploys from `main`; every
    branch gets a preview at `https://kawaii-git-<branch>-<team>.vercel.app`.
 2. **Create the TinaCloud project** and set `NEXT_PUBLIC_TINA_CLIENT_ID`, `TINA_TOKEN` and
-   `NEXT_PUBLIC_TINA_BRANCH` in the Vercel project settings, not only in local `.env`.
+   `NEXT_PUBLIC_TINA_BRANCH` in the Vercel project settings, not only in local `.env`. Then delete
+   `vercel.json` — see below.
 3. **Set the real domain** in `lib/seo.ts` (`SITE_URL`, `SITE_NAME`, `SITE_DESCRIPTION`) —
    `metadataBase` and all OpenGraph paths are built from it.
 4. **Replace the demo content** in `content/pages/`, `content/posts/` and
    `content/global/index.json`, and the site mark in `components/icon.tsx`.
 
 ## Deployment
+
+> [!IMPORTANT]
+> `vercel.json` pins the build to `pnpm build-local`, which builds against the files in `content/`
+> and needs no credentials. That is what makes a deploy possible before a TinaCloud project exists —
+> the site renders and reads correctly, but `/admin` on the deployed site cannot save. **Delete
+> `vercel.json` once the TinaCloud env vars are set**, so Vercel goes back to `pnpm build` and
+> editing works online.
 
 Hosted on **Vercel**, deployed automatically from `main`. Pushing to `main` triggers a production
 deploy — there is no CI workflow in this repo and no manual step. A push is not instant: Vercel needs
