@@ -14,7 +14,7 @@ This is a clone of [easingthemes/tatjanizza](https://github.com/easingthemes/tat
 - **Content is demo content.** Every page and post under `content/` is an example written to show the shape of the thing, not real writing. It is all meant to be replaced.
 - **The theme was retuned** away from the dark gold one it was cloned from: light, blush background, plum ink, rose accent, Nunito throughout. Tokens are `--kw-*` in `styles.css`; the blocks read those tokens and nothing else, so the whole look changes from that one block.
 - **The block picker is deliberately short.** Eight blocks, in `tina/collection/page.ts`. The music-specific ones (tracks, credits) and the unused starter ones (features, stats, testimonial, callout, stock hero) were deleted, not just unregistered. They are recoverable from `easingthemes/tatjanizza` if ever wanted.
-- **Nothing is deployed yet.** See README, "Setup still to do".
+- **Deployed on Vercel** (project `kawaii`, team `kaidx`) from `main`, with TinaCloud supplying content at build time. `kawaiikaja.com` is the intended domain but is not pointed at it yet. See README, "Setup still to do".
 
 ### The blocks
 
@@ -130,9 +130,11 @@ Schema co-location is the core convention here: Tina schemas import from `compon
 
 ## Deployment
 
-Intended host is **Vercel**, auto-deployed from `main`. There is no `.github/workflows/` directory and none is needed — Vercel builds on push. A build takes ~1–3 min, so a pushed change is not live immediately. Every branch gets a public preview at `https://kawaii-git-<branch>-<team>.vercel.app` (slashes in the branch name become dashes; long names are truncated with a hash).
+Hosted on **Vercel**, auto-deployed from `main`. There is no `.github/workflows/` directory and none is needed — Vercel builds on push. A build takes ~1–3 min, so a pushed change is not live immediately. Every branch gets a public preview at `https://kawaii-git-<branch>-<team>.vercel.app` (slashes in the branch name become dashes; long names are truncated with a hash).
 
-`NEXT_PUBLIC_TINA_CLIENT_ID`, `TINA_TOKEN`, and `NEXT_PUBLIC_TINA_BRANCH` must exist in the Vercel project settings, not only in local `.env`.
+`NEXT_PUBLIC_TINA_CLIENT_ID`, `TINA_TOKEN`, and `NEXT_PUBLIC_TINA_BRANCH` must exist in the Vercel project settings, not only in local `.env`. They are read at **build time**, so changing one does nothing until a redeploy. Scope `NEXT_PUBLIC_TINA_BRANCH` to Production only — see `.env.example`.
+
+A build without those credentials is not a shortcut worth taking. `tinacms build --local` exits 0 and produces a deployable site, but it bakes `url: 'http://localhost:<port>/graphql'` into the generated client — the content server that only exists during the build. Every route here re-renders on the server (`revalidate = 300`), so the pages degrade to the not-found page once their first revalidation window passes. This was tried and reverted; do not reach for it again.
 
 **Vercel was chosen deliberately over GitHub Pages — do not propose a static-export conversion unless asked.** Static export is technically feasible (no API routes, middleware, server actions, or `searchParams` anywhere), but it would disable `next/image` optimization, replace ISR with a full rebuild on every content save, and silently ignore `rewrites()` and `headers()`. Four things in the codebase depend on having a server and would break or go inert:
 
