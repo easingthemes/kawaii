@@ -1,4 +1,4 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "buildCommand": "pnpm build-local"
+  "buildCommand": "tinacms build --local --skip-cloud-checks --noTelemetry -c \"next build\""
 }

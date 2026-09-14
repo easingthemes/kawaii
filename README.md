@@ -79,8 +79,9 @@ This repo carries working code but has never been deployed. Before it is a live 
 ## Deployment
 
 > [!IMPORTANT]
-> `vercel.json` pins the build to `pnpm build-local`, which builds against the files in `content/`
-> and needs no credentials. That is what makes a deploy possible before a TinaCloud project exists —
+> `vercel.json` pins the build to `tinacms build --local`, the same command `scripts/preflight.sh`
+> runs: it serves `content/` over a local GraphQL server and needs no credentials. (Not
+> `pnpm build-local`, which uses `--content=local` and still demands a client ID and token.) That is what makes a deploy possible before a TinaCloud project exists —
 > the site renders and reads correctly, but `/admin` on the deployed site cannot save. **Delete
 > `vercel.json` once the TinaCloud env vars are set**, so Vercel goes back to `pnpm build` and
 > editing works online.
