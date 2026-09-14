@@ -1,0 +1,26 @@
+@import 'tailwindcss';
+@plugin "@tailwindcss/typography";
+
+/* Tailwind v4 is configured here, not in a tailwind.config.js — there isn't one. */
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-sans);
+}
+
+:root {
+  --background: oklch(0.99 0.005 90);
+  --foreground: oklch(0.2 0.02 280);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: oklch(0.18 0.02 280);
+    --foreground: oklch(0.95 0.01 90);
+  }
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+}

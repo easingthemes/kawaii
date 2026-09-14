@@ -1,0 +1,30 @@
+{
+  "name": "kawaii",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "tinacms dev -c \"next dev --turbopack\"",
+    "build": "tinacms build && next build",
+    "build-local": "tinacms build --content=local --skip-cloud-checks -c \"next build\"",
+    "start": "tinacms build && next start",
+    "lint": "biome lint",
+    "dev:build": "next build"
+  },
+  "dependencies": {
+    "@tailwindcss/postcss": "^4.1.15",
+    "@tailwindcss/typography": "^0.5.19",
+    "next": "15.3.8",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "tailwindcss": "^4.1.15",
+    "tinacms": "^3.10.0"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^1.9.4",
+    "@tinacms/cli": "^2.5.3",
+    "@types/node": "^22.18.12",
+    "@types/react": "^18.3.26",
+    "@types/react-dom": "^18.3.7",
+    "typescript": "^5.9.3"
+  }
+}
