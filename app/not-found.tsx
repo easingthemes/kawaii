@@ -18,8 +18,8 @@ export function Illustration(props: React.ComponentPropsWithoutRef<"svg">) {
 }
 
 export default function NotFound({
-  title = "Page not found",
-  description = "Lost, this page is. In another system, it may be.",
+  title = "Seite nicht gefunden",
+  description = "Die Seite gibt es nicht (mehr). Vielleicht ein Tippfehler?",
 }: NotFoundProps) {
   return (
     <div className="relative text-center z-[1] pt-52">
@@ -31,7 +31,7 @@ export default function NotFound({
       </p>
       <div className="mt-10 mx-auto">
         <Button asChild>
-          <Link href="/">Take me home</Link>
+          <Link href="/">Zur Startseite</Link>
         </Button>
       </div>
     </div>

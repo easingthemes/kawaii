@@ -76,25 +76,25 @@ export const KwHero = ({ data }: { data: PageBlocksKwHero }) => {
 
 export const kwHeroBlockSchema: Template = {
   name: 'kwHero',
-  label: 'Big intro (hero)',
+  label: 'Großer Anfang (Hero)',
   ui: {
     defaultItem: {
-      eyebrow: 'Blog and events',
+      eyebrow: 'Blog und Fotos',
       name: 'Kaja',
     },
   },
   fields: [
-    { type: 'string', label: 'Eyebrow', name: 'eyebrow' },
+    { type: 'string', label: 'Kleine Zeile oben', name: 'eyebrow' },
     { type: 'string', label: 'Name', name: 'name' },
-    { type: 'string', label: 'Tagline', name: 'tagline' },
-    { type: 'rich-text', label: 'Intro', name: 'intro' },
+    { type: 'string', label: 'Ein Satz darunter', name: 'tagline' },
+    { type: 'rich-text', label: 'Einleitung', name: 'intro' },
     {
       type: 'object',
-      label: 'Background image',
+      label: 'Hintergrundbild',
       name: 'image',
       fields: [
-        { name: 'src', label: 'Image', type: 'image' },
-        { name: 'alt', label: 'Alt text', type: 'string' },
+        { name: 'src', label: 'Bild', type: 'image' },
+        { name: 'alt', label: 'Was ist auf dem Bild?', type: 'string' },
       ],
     },
     {
@@ -104,10 +104,10 @@ export const kwHeroBlockSchema: Template = {
       list: true,
       ui: {
         itemProps: (item) => ({ label: item?.label }),
-        defaultItem: { label: 'Read the blog', link: '/posts' },
+        defaultItem: { label: 'Zum Blog', link: '/posts' },
       },
       fields: [
-        { type: 'string', label: 'Label', name: 'label' },
+        { type: 'string', label: 'Text auf dem Knopf', name: 'label' },
         { type: 'string', label: 'Link', name: 'link' },
       ],
     },

@@ -27,6 +27,17 @@ This is a clone of [easingthemes/tatjanizza](https://github.com/easingthemes/tat
 | Timeline | `components/blocks/kw-timeline.tsx` | dated list down a rule |
 | Call to action, Plain text, Video | inherited from the starter | |
 
+**The site is in German** — content, navigation, block labels in the editor and the Tina field
+labels. `lib/format-date.ts` holds the one date formatter (German month names) shared by the
+events block and the blog; it parses the ISO string with a regex for the reason given below.
+
+Blog posts carry Kaja's format: a short text, a photo, and a **1–10 rating** (`rating` +
+`ratingWhy` on the `post` collection, rendered by `components/kw-rating.tsx` — a row of ten
+hearts on the post, a small badge in the list). `components/kw-signoff.tsx` prints her
+"Eure Kawaii Kaja — Tschüss!" under every post, so it is part of the template rather than
+something she has to type. The `Frage` MDX template (schema in `tina/collection/post.tsx`,
+renderer in `components/mdx-components.tsx`) is her question-to-the-readers box.
+
 Two things in the gallery and events blocks are load-bearing and easy to undo by accident:
 
 - **Neither block reads the current date.** Event ordering is an editor choice, not "upcoming vs past" computed from `Date.now()`. These are client components, so anything derived from the current time renders on the server at ISR time and again in the browser, and the two can disagree — that is a hydration error, not just a stale date.

@@ -21,7 +21,7 @@ export const Header = () => {
             <div className="flex w-full items-center justify-between gap-12">
               <Link
                 href="/"
-                aria-label="home"
+                aria-label="Startseite"
                 className="flex items-center space-x-2">
                 <Icon
                   parentColor={header.color!}
@@ -38,7 +38,7 @@ export const Header = () => {
 
               <button
                 onClick={() => setMenuState(!menuState)}
-                aria-label={menuState == true ? 'Close Menu' : 'Open Menu'}
+                aria-label={menuState == true ? 'Menü schließen' : 'Menü öffnen'}
                 className="relative z-20 -m-2.5 -mr-4 block cursor-pointer p-2.5 lg:hidden">
                 <Menu className="in-data-[state=active]:rotate-180 in-data-[state=active]:scale-0 in-data-[state=active]:opacity-0 m-auto size-6 duration-200" />
                 <X className="in-data-[state=active]:rotate-0 in-data-[state=active]:scale-100 in-data-[state=active]:opacity-100 absolute inset-0 m-auto size-6 -rotate-180 scale-0 opacity-0 duration-200" />

@@ -32,6 +32,11 @@ export const components: Components<{
     disclaimer?: TinaMarkdownContent;
   };
   video: PageBlocksVideo;
+  Frage: {
+    frage?: string;
+    aufloesungAm?: string;
+    aufloesung?: string;
+  };
 }> = {
   code_block: (props) => {
     if (!props) {
@@ -107,6 +112,24 @@ export const components: Components<{
           </div>
         </div>
       </div>
+    );
+  },
+  Frage: (props) => {
+    if (!props?.frage) {
+      return <></>;
+    }
+    return (
+      <aside className='not-prose my-8 rounded-2xl border kw-rule bg-[var(--kw-bg-deep)] px-5 py-4'>
+        <p className='kw-mono text-[var(--kw-accent)]'>Frage an euch</p>
+        <p className='kw-prose mt-2 text-lg'>{props.frage}</p>
+        {props.aufloesung ? (
+          <p className='kw-prose mt-3'>
+            <strong>Auflösung:</strong> {props.aufloesung}
+          </p>
+        ) : (
+          props.aufloesungAm && <p className='kw-mono mt-3 text-[var(--kw-ink-soft)]'>Auflösung am {props.aufloesungAm}</p>
+        )}
+      </aside>
     );
   },
   img: (props) => {

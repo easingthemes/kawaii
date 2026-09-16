@@ -4,24 +4,7 @@ import Link from 'next/link';
 import type { Template } from 'tinacms';
 import { tinaField } from 'tinacms/dist/react';
 import { PageBlocksKwEvents } from '../../tina/__generated__/types';
-
-const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-
-/**
- * Formats a Tina `datetime` value ("2026-10-12T00:00:00.000Z") for display.
- *
- * Reads the date straight out of the string instead of going through `new Date()`.
- * A Date would be formatted in the viewer's timezone, which can land on a different
- * day than the server picked — and a block that renders one day on the server and
- * another in the browser is a hydration error, not just a wrong date.
- */
-function formatDate(value?: string | null): string {
-  if (!value) return '';
-  const match = value.match(/^(\d{4})-(\d{2})-(\d{2})/);
-  if (!match) return value;
-  const [, year, month, day] = match;
-  return `${Number(day)} ${MONTHS[Number(month) - 1]} ${year}`;
-}
+import { formatDate } from '@/lib/format-date';
 
 /** Sort key. Undated entries sink to the bottom either way rather than jumping to the top. */
 function sortKey(value?: string | null): string {
@@ -57,7 +40,7 @@ export const KwEvents = ({ data }: { data: PageBlocksKwEvents }) => {
         )}
 
         {events.length === 0 ? (
-          <p className='kw-prose mt-8'>Nothing listed yet.</p>
+          <p className='kw-prose mt-8'>Noch nichts eingetragen.</p>
         ) : (
           <ul className='mt-10 grid gap-4'>
             {events.map((event, i) => (
@@ -91,7 +74,7 @@ export const KwEvents = ({ data }: { data: PageBlocksKwEvents }) => {
                     className='kw-mono mt-4 inline-block border-b border-[var(--kw-rule)] pb-1 text-[var(--kw-accent)] transition-colors hover:border-[var(--kw-accent)] hover:text-[var(--kw-ink)]'
                     data-tina-field={tinaField(event, 'linkLabel')}
                   >
-                    {event.linkLabel || 'More'} →
+                    {event.linkLabel || 'Mehr'} →
                   </Link>
                 )}
               </li>
@@ -105,39 +88,39 @@ export const KwEvents = ({ data }: { data: PageBlocksKwEvents }) => {
 
 export const kwEventsBlockSchema: Template = {
   name: 'kwEvents',
-  label: 'Events list',
+  label: 'Terminliste',
   ui: {
-    defaultItem: { label: 'Events', heading: 'Coming up', order: 'soonest' },
-    itemProps: (item) => ({ label: item?.heading || 'Events list' }),
+    defaultItem: { label: 'Termine', heading: 'Demnächst', order: 'soonest' },
+    itemProps: (item) => ({ label: item?.heading || 'Terminliste' }),
   },
   fields: [
-    { type: 'string', label: 'Small label above the heading', name: 'label' },
-    { type: 'string', label: 'Heading', name: 'heading' },
+    { type: 'string', label: 'Kleine Zeile über der Überschrift', name: 'label' },
+    { type: 'string', label: 'Überschrift', name: 'heading' },
     {
       type: 'string',
-      label: 'Order',
+      label: 'Reihenfolge',
       name: 'order',
-      description: 'Soonest first for things coming up. Most recent first for events already covered.',
+      description: 'Nächster Termin zuerst für Sachen, die noch kommen. Neuester zuerst für Sachen, die vorbei sind.',
       options: [
-        { label: 'Soonest first', value: 'soonest' },
-        { label: 'Most recent first', value: 'newest' },
+        { label: 'Nächster zuerst', value: 'soonest' },
+        { label: 'Neuester zuerst', value: 'newest' },
       ],
     },
     {
       type: 'object',
-      label: 'Events',
+      label: 'Termine',
       name: 'events',
       list: true,
       ui: {
         itemProps: (item) => ({ label: [item?.date?.slice(0, 10), item?.title].filter(Boolean).join(' — ') }),
       },
       fields: [
-        { type: 'datetime', label: 'Date', name: 'date', ui: { dateFormat: 'D MMMM YYYY' } },
-        { type: 'string', label: 'Title', name: 'title' },
-        { type: 'string', label: 'Place', name: 'place' },
-        { type: 'string', label: 'Description', name: 'text', ui: { component: 'textarea' } },
+        { type: 'datetime', label: 'Datum', name: 'date', ui: { dateFormat: 'D MMMM YYYY' } },
+        { type: 'string', label: 'Titel', name: 'title' },
+        { type: 'string', label: 'Ort', name: 'place' },
+        { type: 'string', label: 'Beschreibung', name: 'text', ui: { component: 'textarea' } },
         { type: 'string', label: 'Link (optional)', name: 'link' },
-        { type: 'string', label: 'Link text', name: 'linkLabel', description: 'Shown on the link. Defaults to "More".' },
+        { type: 'string', label: 'Text auf dem Link', name: 'linkLabel', description: 'Steht auf dem Link. Standard: "Mehr".' },
       ],
     },
   ],

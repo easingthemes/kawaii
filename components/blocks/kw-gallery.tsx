@@ -34,7 +34,7 @@ export const KwGallery = ({ data }: { data: PageBlocksKwGallery }) => {
         )}
 
         {photos.length === 0 ? (
-          <p className='kw-prose mt-8'>No photos yet.</p>
+          <p className='kw-prose mt-8'>Noch keine Fotos.</p>
         ) : (
           <ul className={`mt-10 grid grid-cols-1 gap-6 ${columns}`}>
             {photos.map((photo, i) => (
@@ -67,17 +67,17 @@ export const KwGallery = ({ data }: { data: PageBlocksKwGallery }) => {
 
 export const kwGalleryBlockSchema: Template = {
   name: 'kwGallery',
-  label: 'Photo gallery',
+  label: 'Fotogalerie',
   ui: {
-    defaultItem: { label: 'Photos', heading: 'Gallery', columns: '3' },
-    itemProps: (item) => ({ label: item?.heading || 'Photo gallery' }),
+    defaultItem: { label: 'Fotos', heading: 'Fotos', columns: '3' },
+    itemProps: (item) => ({ label: item?.heading || 'Fotogalerie' }),
   },
   fields: [
-    { type: 'string', label: 'Small label above the heading', name: 'label' },
-    { type: 'string', label: 'Heading', name: 'heading' },
+    { type: 'string', label: 'Kleine Zeile über der Überschrift', name: 'label' },
+    { type: 'string', label: 'Überschrift', name: 'heading' },
     {
       type: 'string',
-      label: 'Photos per row (on a wide screen)',
+      label: 'Fotos pro Reihe (auf großem Bildschirm)',
       name: 'columns',
       options: [
         { label: '2', value: '2' },
@@ -87,21 +87,21 @@ export const kwGalleryBlockSchema: Template = {
     },
     {
       type: 'object',
-      label: 'Photos',
+      label: 'Fotos',
       name: 'photos',
       list: true,
       ui: {
-        itemProps: (item) => ({ label: item?.caption || item?.alt || 'Photo' }),
+        itemProps: (item) => ({ label: item?.caption || item?.alt || 'Foto' }),
       },
       fields: [
-        { type: 'image', label: 'Photo', name: 'src' },
+        { type: 'image', label: 'Foto', name: 'src' },
         {
           type: 'string',
-          label: 'Alt text',
+          label: 'Was ist auf dem Foto?',
           name: 'alt',
-          description: 'What is in the photo, in a few words. Read out to people who cannot see it.',
+          description: 'In ein paar Worten. Wird Leuten vorgelesen, die das Foto nicht sehen können.',
         },
-        { type: 'string', label: 'Caption (optional)', name: 'caption' },
+        { type: 'string', label: 'Bildunterschrift (optional)', name: 'caption' },
       ],
     },
   ],

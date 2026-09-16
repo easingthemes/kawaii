@@ -66,7 +66,7 @@ export const metadata: Metadata = {
     title: SITE_NAME,
     description: SITE_DESCRIPTION,
     url: "/",
-    locale: "en_US",
+    locale: "de_DE",
     images: [{ ...DEFAULT_OG_IMAGE, alt: SITE_NAME }],
   },
   twitter: {
@@ -86,7 +86,7 @@ export default function RootLayout({
 }) {
   return (
     <html
-      lang="en"
+      lang="de"
       className={cn(
         fontSans.variable,
         nunito.variable,

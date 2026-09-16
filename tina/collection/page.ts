@@ -10,7 +10,7 @@ import { kwEventsBlockSchema } from '@/components/blocks/kw-events';
 import { seoSchemaField } from '@/tina/fields/seo';
 
 const Page: Collection = {
-  label: 'Pages',
+  label: 'Seiten',
   name: 'page',
   path: 'content/pages',
   format: 'mdx',
@@ -27,8 +27,8 @@ const Page: Collection = {
     {
       type: 'string',
       name: 'title',
-      label: 'Page title',
-      description: 'Used for the tab title and sharing when no SEO title is set.',
+      label: 'Seitentitel',
+      description: 'Steht im Browser-Tab und beim Teilen, wenn kein SEO-Titel gesetzt ist.',
       // Tina requires `required` alongside `isTitle`; without it the schema fails
       // validation and `tinacms build` stops before Next ever runs.
       isTitle: true,
@@ -39,7 +39,7 @@ const Page: Collection = {
       type: 'object',
       list: true,
       name: 'blocks',
-      label: 'Sections',
+      label: 'Abschnitte',
       ui: {
         visualSelector: true,
       },

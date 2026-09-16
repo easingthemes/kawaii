@@ -5,7 +5,7 @@
       "color": "pink",
       "style": "regular"
     },
-    "name": "Kaja",
+    "name": "Kawaii Kaja",
     "color": "default",
     "nav": [
       {
@@ -13,16 +13,16 @@
         "label": "Blog"
       },
       {
-        "href": "/events",
-        "label": "Events"
+        "href": "/gallery",
+        "label": "Fotos"
       },
       {
-        "href": "/gallery",
-        "label": "Gallery"
+        "href": "/events",
+        "label": "Termine"
       },
       {
         "href": "/about",
-        "label": "About"
+        "label": "Über mich"
       }
     ]
   },

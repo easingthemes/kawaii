@@ -4,7 +4,7 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import type { Collection } from 'tinacms';
 
 const Post: Collection = {
-  label: 'Blog Posts',
+  label: 'Blog-Posts',
   name: 'post',
   path: 'content/posts',
   format: 'mdx',
@@ -16,7 +16,7 @@ const Post: Collection = {
   fields: [
     {
       type: 'string',
-      label: 'Title',
+      label: 'Titel',
       name: 'title',
       isTitle: true,
       required: true,
@@ -24,13 +24,13 @@ const Post: Collection = {
     {
       type: 'image',
       name: 'heroImg',
-      label: 'Hero Image',
+      label: 'Foto',
       // @ts-ignore
       uploadDir: () => 'posts',
     },
     {
       type: 'rich-text',
-      label: 'Excerpt',
+      label: 'Kurz gesagt',
       name: 'excerpt',
       overrides: {
         toolbar: ['bold', 'italic', 'link'],
@@ -38,7 +38,7 @@ const Post: Collection = {
     },
     {
       type: 'reference',
-      label: 'Author',
+      label: 'Wer schreibt',
       name: 'author',
       collections: ['author'],
       ui: {
@@ -72,7 +72,7 @@ const Post: Collection = {
     },
     {
       type: 'datetime',
-      label: 'Posted Date',
+      label: 'Datum',
       name: 'date',
       ui: {
         dateFormat: 'MMMM DD YYYY',
@@ -80,8 +80,27 @@ const Post: Collection = {
       },
     },
     {
+      type: 'number',
+      label: 'Bewertung (1-10)',
+      name: 'rating',
+      description: 'Wie gut war es? 1 = gar nicht, 10 = der Hammer. Leer lassen, wenn der Post keine Bewertung hat.',
+      ui: {
+        validate: (value?: number) => {
+          if (value === undefined || value === null) return;
+          if (!Number.isInteger(value) || value < 1 || value > 10) return 'Bitte eine ganze Zahl zwischen 1 und 10.';
+        },
+      },
+    },
+    {
+      type: 'string',
+      label: 'Warum diese Bewertung?',
+      name: 'ratingWhy',
+      description: 'Ein Satz, z. B. "weil es geregnet hat".',
+      ui: { component: 'textarea' },
+    },
+    {
       type: 'object',
-      label: 'Tags',
+      label: 'Themen',
       name: 'tags',
       list: true,
       fields: [
@@ -108,7 +127,7 @@ const Post: Collection = {
     },
     {
       type: 'rich-text',
-      label: 'Body',
+      label: 'Text',
       name: '_body',
       templates: [
         {
@@ -177,6 +196,15 @@ const Post: Collection = {
               buttonText: 'Notify Me',
             },
           },
+        },
+        {
+          name: 'Frage',
+          label: 'Frage an euch',
+          fields: [
+            { name: 'frage', label: 'Die Frage', type: 'string', ui: { component: 'textarea' } },
+            { name: 'aufloesungAm', label: 'Auflösung am', type: 'string', description: 'z. B. "1. Dezember". Wird nur als Text angezeigt.' },
+            { name: 'aufloesung', label: 'Die Antwort', type: 'string', description: 'Leer lassen, bis die Auflösung dran ist.', ui: { component: 'textarea' } },
+          ],
         },
         videoBlockSchema,
       ],

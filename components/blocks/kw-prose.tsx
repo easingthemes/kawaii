@@ -53,18 +53,18 @@ export const KwProse = ({ data }: { data: PageBlocksKwProse }) => {
 
 export const kwProseBlockSchema: Template = {
   name: 'kwProse',
-  label: 'Text section',
+  label: 'Textabschnitt',
   ui: {
     defaultItem: {
-      label: 'About',
-      heading: 'A short heading goes here.',
+      label: 'Über mich',
+      heading: 'Hier kommt eine kurze Überschrift hin.',
     },
     itemProps: (item) => ({ label: item?.heading || item?.label }),
   },
   fields: [
-    { type: 'string', label: 'Label (small, monospace)', name: 'label' },
-    { type: 'string', label: 'Heading', name: 'heading' },
-    { type: 'string', label: 'Subheading', name: 'subheading' },
-    { type: 'rich-text', label: 'Body', name: 'body' },
+    { type: 'string', label: 'Kleine Zeile über der Überschrift', name: 'label' },
+    { type: 'string', label: 'Überschrift', name: 'heading' },
+    { type: 'string', label: 'Unterüberschrift', name: 'subheading' },
+    { type: 'rich-text', label: 'Text', name: 'body' },
   ],
 };

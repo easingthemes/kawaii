@@ -43,11 +43,29 @@ If you want a kind of section that doesn't exist yet, that needs a developer.
 
 ## Blog posts
 
-Posts live under **Blog Posts** in the sidebar. Each has a title, a hero image, a short excerpt, an
-author, tags, and the body text.
+Posts live under **Blog-Posts** in the sidebar. Each has a title (Titel), a photo (Foto), a short
+excerpt (Kurz gesagt), an author, a date, tags, the body text — and Kaja's rating: **Bewertung
+(1-10)** plus **Warum diese Bewertung?**.
+
+The rating is optional. Leave it empty and the post simply shows no hearts; fill it in and the
+post gets a row of ten hearts with the score, and the blog list gets a small badge.
 
 The body is a rich text editor — bold, italics, links, headings, lists, images and quotes all work.
+Inside the body there is also a **Frage an euch** block for a question to the readers, with an
+"Auflösung am" date and a place for the answer once it is time to reveal it.
+
 The excerpt is what shows in the list of posts, so it's worth writing rather than leaving empty.
+
+### Für Kaja: so geht ein neuer Post
+
+1. In der Seitenleiste auf **Blog-Posts**, dann auf **Create New**.
+2. **Titel** rein, **Datum** einstellen, ein **Foto** hochladen.
+3. **Kurz gesagt**: ein oder zwei Sätze — das steht in der Liste.
+4. **Text**: wie es war. Ruhig kurz.
+5. **Bewertung (1-10)** und **Warum diese Bewertung?** ausfüllen.
+6. Speichern. Nach ein bis zwei Minuten ist es online.
+
+Das "Eure Kawaii Kaja — Tschüss!" am Ende kommt automatisch, das musst du nicht tippen.
 
 ## Pictures
 

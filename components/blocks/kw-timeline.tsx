@@ -67,26 +67,26 @@ export const KwTimeline = ({ data }: { data: PageBlocksKwTimeline }) => {
 
 export const kwTimelineBlockSchema: Template = {
   name: 'kwTimeline',
-  label: 'Timeline',
+  label: 'Zeitstrahl',
   ui: {
-    defaultItem: { label: 'History', heading: 'How it started' },
-    itemProps: (item) => ({ label: item?.heading || 'Timeline' }),
+    defaultItem: { label: 'Bisher', heading: 'Wie das angefangen hat' },
+    itemProps: (item) => ({ label: item?.heading || 'Zeitstrahl' }),
   },
   fields: [
-    { type: 'string', label: 'Label (small, monospace)', name: 'label' },
-    { type: 'string', label: 'Heading', name: 'heading' },
+    { type: 'string', label: 'Kleine Zeile über der Überschrift', name: 'label' },
+    { type: 'string', label: 'Überschrift', name: 'heading' },
     {
       type: 'object',
-      label: 'Entries',
+      label: 'Einträge',
       name: 'entries',
       list: true,
       ui: {
         itemProps: (item) => ({ label: [item?.date, item?.title].filter(Boolean).join(' — ') }),
-        defaultItem: { date: 'September 2026', title: 'Something happened' },
+        defaultItem: { date: 'September 2026', title: 'Da war was' },
       },
       fields: [
-        { type: 'string', label: 'Date', name: 'date' },
-        { type: 'string', label: 'Title', name: 'title' },
+        { type: 'string', label: 'Datum', name: 'date' },
+        { type: 'string', label: 'Titel', name: 'title' },
         { type: 'string', label: 'Text', name: 'text', ui: { component: 'textarea' } },
       ],
     },

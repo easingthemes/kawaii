@@ -1,50 +1,44 @@
 ---
-title: Kaja
+title: Kawaii Kaja
 seo:
-  title: 'Kaja — blog, events and photos'
+  title: 'Kawaii Kaja — Blog, Fotos und Bewertungen'
   description: >-
-    Kaja writes about the events she goes to, and puts the photos here.
+    Kaja schreibt kurz auf, wo sie war, stellt ein Foto dazu und gibt eine
+    Bewertung von 1 bis 10.
 blocks:
   - _template: kwHero
-    eyebrow: Blog, events and photos
-    name: Kaja
-    tagline: I go to things and write about them.
+    eyebrow: Blog, Fotos und Bewertungen
+    name: Kawaii Kaja
+    tagline: Ich gehe hin, ich schreibe es auf, ich gebe Punkte.
     intro: |
-      Concerts, fairs, school events, days out — what it was like, and the photos.
-      New posts show up on the blog page.
+      Konzerte, Feste, Flohmärkte, Ausflüge — wie es war, mit Foto und einer
+      Bewertung von 1 bis 10. Neue Posts stehen im Blog.
     image:
       src: ''
       alt: ''
     actions:
-      - label: Read the blog
+      - label: Zum Blog
         link: /posts
-      - label: What's coming up
-        link: /events
-  - _template: kwEvents
-    label: Coming up
-    heading: Next few things
-    order: soonest
-    events:
-      - date: 2026-10-04T00:00:00.000Z
-        title: Autumn concert
-        place: City hall
-        text: Example entry — replace it. Everything here is edited in the site editor.
-        link: /posts
-        linkLabel: Read about last year
-      - date: 2026-11-15T00:00:00.000Z
-        title: Winter fair
-        place: Main square
-        text: Another example. Delete the ones you do not need.
+      - label: Fotos
+        link: /gallery
+  - _template: kwProse
+    label: So geht das hier
+    heading: Kurzer Text, ein Foto, Punkte von 1 bis 10.
+    body: |
+      Jeder Post ist kurz: wo ich war, wie es war, und am Ende eine Bewertung
+      von 1 bis 10 mit einem Satz, warum.
+
+      10 heißt: der Hammer. 1 heißt: nie wieder.
   - _template: kwGallery
-    label: Photos
-    heading: Recent photos
+    label: Fotos
+    heading: Neueste Fotos
     columns: '3'
     photos: []
   - _template: cta
-    title: Want to be on the site?
-    description: If you run something worth covering, get in touch.
+    title: Soll ich zu eurer Sache kommen?
+    description: Wenn ihr etwas macht, worüber ich schreiben soll, sagt Bescheid.
     actions:
-      - label: Read the blog
+      - label: Zum Blog
         type: button
         link: /posts
 ---
